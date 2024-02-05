@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Authentications', type: :request do
-  describe 'POST /signup' do
-    let(:signup_url) { '/signup' }
-    let(:login_url) { '/login' }
-    let(:logout_url) { '/logout' }
+  describe 'POST /api/v1/signup' do
+    let(:signup_url) { '/api/v1/signup' }
+    let(:login_url) { '/api/v1/login' }
+    let(:logout_url) { '/api/v1/logout' }
     let(:user) { create(:user) }
 
     context 'when signup params are correct' do

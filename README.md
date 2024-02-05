@@ -23,10 +23,13 @@ as adding and removing books from their account.
 * `docker-compose build`
 
 ### Create database and run migrations:
-* `docker-compose run web bundle exec rails db:create db:migrate`
+* `docker-compose run web bundle exec rails db:create db:migrate db:seed`
 
 ### Running application:
 * `docker-compose up`
 
 ### Running tests:
 * `docker-compose run web bundle exec rspec`
+
+### Test User
+user@example.com:password123

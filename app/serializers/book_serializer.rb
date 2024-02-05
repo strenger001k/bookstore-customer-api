@@ -11,6 +11,12 @@
 #  updated_at :datetime         not null
 #
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :created_at
+  include DateFormatting
+
+  attributes :id, :title, :formatted_created_at
   belongs_to :author
+
+  def formatted_created_at
+    formatted_date(object.created_at)
+  end
 end

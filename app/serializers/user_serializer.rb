@@ -15,6 +15,12 @@
 #  jti                    :string           not null
 #
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :created_at
+  include DateFormatting
+
+  attributes :id, :email, :formatted_created_at
   has_many :books
+
+  def formatted_created_at
+    formatted_date(object.created_at)
+  end
 end

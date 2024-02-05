@@ -7,6 +7,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
   let(:user2) { create(:user) }
   let(:book) { create(:book, author: user) }
   let(:valid_attributes) { attributes_for(:book) }
+  let(:invalid_attributes) { attributes_for(:book, title: '') }
 
   before do
     sign_in user
@@ -44,6 +45,14 @@ RSpec.describe Api::V1::BooksController, type: :controller do
       it 'renders a JSON response with the new book' do
         post :create, params: { book: valid_attributes }, format: :json
         expect(response).to have_http_status(:created)
+      end
+
+      context 'with invalid params' do
+        it 'does not create a new Book' do
+          expect do
+            post :create, params: { book: invalid_attributes }, format: :json
+          end.to change(Book, :count).by(0)
+        end
       end
     end
   end
